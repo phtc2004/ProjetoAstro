@@ -1,2 +1,2 @@
 # Projeto Astro
-Explorador 3D interativo do Sistema Solar desenvolvido em Python.
+Interactive 3D Solar System explorer developed in Python.
