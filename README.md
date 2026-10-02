@@ -6,7 +6,7 @@ Interactive 3D Solar System explorer developed in Python.
 
 Currently in development.
 
-**Current milestone:** v0.1 — Object-Oriented Domain Model
+**Current milestone:** v0.2 — Object-Oriented Domain Model
 
 # Roadmap
 
