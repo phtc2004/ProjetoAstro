@@ -11,5 +11,10 @@ class Star(CelestialBody):
 
     def resume(self):
         base_resume = super().resume()
-        star_resume = f"{base_resume} | SC = {self.spectral_class} | ETK = {self.effective_temp_kelvin} | C = {self.composition_fraction} | SL = {self.solar_luminosity}"
+        star_resume = (
+            f"{base_resume}"
+            f" | SC = {self.spectral_class}"
+            f" | ETK = {self.effective_temp_kelvin}"
+            f" | C = {self.composition_fraction}"
+            f" | SL = {self.solar_luminosity}")        
         return star_resume

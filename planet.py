@@ -18,7 +18,9 @@ class Planet(CelestialBody):
 
     def resume(self):
         base_resume = super().resume()
-        planet_resume = f"{base_resume} | {self.orbit} | AVG_temp = {self.avg_temp_celsius}"
+        planet_resume = f"{base_resume} | AVG_temp = {self.avg_temp_celsius}"
         if self.atmosphere is not None:
             planet_resume += f' | Atmosphere Composition: {self.atmosphere.composition_fraction}'
+        if self.orbit is not None:
+            planet_resume += f' | Orbit: {self.orbit}'
         return planet_resume

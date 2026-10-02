@@ -11,7 +11,7 @@ Currently in development.
 # Roadmap
 
 - [x] **v0.0** — Git & GitHub setup
-- [ ] **v0.1** — Object-Oriented Domain Model
+- [x] **v0.1** — Object-Oriented Domain Model
 - [ ] **v0.2** — First 3D Prototype
 - [ ] **v0.3** — Visual Solar System
 - [ ] **v0.4** — Explorer Interactions
