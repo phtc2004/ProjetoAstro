@@ -1,50 +1,18 @@
-class CelestialBody:
-    def __init__(self, name, radius_km, mass_kg, gravity):
-        self.name = name
-        self.radius_km = radius_km
-        self.mass_kg = mass_kg
-        self.gravity = gravity
-
-    def resume(self):
-        return f"{self.name}: radius = {self.radius_km} km | Mass = {self.mass_kg} kg | Gravity = {self.gravity} m/s²"
+from planet import Planet
+from orbit import Orbit
+from star import Star
+from moon import Moon
+from atmosphere import Atmosphere
 
 
-class Atmosphere:
-    def __init__(self, pressure, composition):
-        self.pressure = pressure
-        self.composition = composition
-
-
-class Planet(CelestialBody):
-    def __init__(
-        self,
-        name,
-        radius_km,
-        mass_kg,
-        gravity,
-        orbital_period_days,
-        avg_temp,
-        atmosphere=None,
-    ):
-        super().__init__(name, radius_km, mass_kg, gravity)
-        self.orbital_period_days = orbital_period_days
-        self.avg_temp = avg_temp
-        self.atmosphere = atmosphere
-
-    def resume(self):
-        base_resume = super().resume()
-        planet_resume = f"{base_resume} | O_P_D = {self.orbital_period_days} | AVG_temp = {self.avg_temp}"
-        if self.atmosphere is not None:
-            planet_resume += f' | Atmosphere Composition: {self.atmosphere.composition}'
-        return planet_resume
-
-
-earth_atmosphere = Atmosphere(
-    1, {"N2": 0.7808, "O2": 0.2095, "Ar": 0.0093, "CO2": 0.0004, "Others": 0.0}
-)
-
-earth = Planet("Earth", 6371, 6.973e24, 9.807, 365.256, 15.1, earth_atmosphere)
-
-
-print(earth.name)
+earth_atmosphere = Atmosphere(1, {'N2':0.7808, 'O2':0.2095, 'Ar':0.0093, 'CO2':0.0004, 'Others':0.0})
+earth_orbit = Orbit(149597870.7, 365.256, 29.78)
+earth = Planet('Earth', 6371, 6.973e24, 9.807, 15.1, earth_atmosphere, earth_orbit)
 print(earth.resume())
+
+sun = Star("Sun", 696000.0, 1.989e30, 274.0, "G2V", 5778, {"H": 0.7346, "He": 0.2485, "O": 0.0077}, 1.0)
+print(sun.resume())
+
+moon_orbit = Orbit(384400.0, 27.322, 1.022)
+moon = Moon("Moon", 1737.4, 7.342e22, 1.62, moon_orbit)
+print(moon.resume())
