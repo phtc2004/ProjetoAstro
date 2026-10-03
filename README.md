@@ -6,13 +6,13 @@ Interactive 3D Solar System explorer developed in Python.
 
 Currently in development.
 
-**Current milestone:** v0.2 — First 3D Prototype
+**Current milestone:** v0.3 — Visual Solar System
 
 # Roadmap
 
 - [x] **v0.0** — Git & GitHub setup
 - [x] **v0.1** — Object-Oriented Domain Model
-- [ ] **v0.2** — First 3D Prototype
+- [x] **v0.2** — First 3D Prototype
 - [ ] **v0.3** — Visual Solar System
 - [ ] **v0.4** — Explorer Interactions
 - [ ] **v0.5** — Astronomical Positioning
