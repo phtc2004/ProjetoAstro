@@ -1,10 +1,15 @@
 from ursina import *
+from ursina.shaders import lit_with_shadows_shader
 
 app = Ursina()
+sky=Sky(texture="textures/stars.jpg")
 
 sun = Entity(model="sphere", scale=2, position=(0, 0, 0), texture="textures/sun.jpg")
-earth = Entity(model="sphere", scale=0.5, texture="textures/earth.jpg")
-moon = Entity(model="sphere", scale=0.1, texture="textures/moon.jpg")
+earth = Entity(model="sphere", scale=0.5, texture="textures/earth.jpg", shader=lit_with_shadows_shader)
+moon = Entity(model="sphere", scale=0.1, texture="textures/moon.jpg", shader=lit_with_shadows_shader)
+
+sun_light = PointLight(position=sun.position)
+
 
 orbit_angle_earth = 0
 earth_orbit_speed = 0.5
