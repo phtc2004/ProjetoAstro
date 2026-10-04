@@ -1,67 +1,43 @@
 from ursina import *
-from ursina.shaders import lit_with_shadows_shader
+from solar_system import *
+from celestial_body3d import CelestialBody3D
+
 
 app = Ursina()
-sky=Sky(texture="textures/stars.jpg")
-
-sun = Entity(model="sphere", scale=2, position=(0, 0, 0), texture="textures/sun.jpg")
-earth = Entity(model="sphere", scale=0.5, texture="textures/earth.jpg", shader=lit_with_shadows_shader)
-moon = Entity(model="sphere", scale=0.1, texture="textures/moon.jpg", shader=lit_with_shadows_shader)
-
-sun_light = PointLight(position=sun.position)
+sky = Sky(texture="textures/stars.jpg")
 
 
-orbit_angle_earth = 0
-earth_orbit_speed = 0.5
-earth_orbit_radius = 5
+sun_3d = CelestialBody3D(sun_object, "textures/sun.jpg")
+earth_3d = CelestialBody3D(earth_object, "textures/earth.jpg", sun_3d)
+moon_3d = CelestialBody3D(moon_object, "textures/moon.jpg", earth_3d)
+mercury_3d = CelestialBody3D(mercury_object, "textures/mercury.jpg", sun_3d)
+venus_3d = CelestialBody3D(venus_object, "textures/venus.jpg", sun_3d)
+mars_3d = CelestialBody3D(mars_object, "textures/mars.jpg", sun_3d)
+jupiter_3d = CelestialBody3D(jupiter_object, "textures/jupiter.jpg", sun_3d)
+saturn_3d = CelestialBody3D(saturn_object, "textures/saturn.jpg", sun_3d)
+uranus_3d = CelestialBody3D(uranus_object, "textures/uranus.jpg", sun_3d)
+neptune_3d = CelestialBody3D(neptune_object, "textures/neptune.jpg", sun_3d)
 
-orbit_angle_moon = 0
-moon_orbit_speed = earth_orbit_speed * 5
-moon_orbit_radius = 0.75
 
-# Orbit lines
+orbiting_bodies = [
+    earth_3d,
+    moon_3d,
+    mercury_3d,
+    venus_3d,
+    mars_3d,
+    jupiter_3d,
+    saturn_3d,
+    uranus_3d,
+    neptune_3d,
+]
 
-points = 50
-
-orbit_line_earth = []
-orbit_line_moon = []
-
-for a in range(points):
-    angle = a * (2*pi / points)
-    e1 = earth_orbit_radius * cos(angle)
-    e3 = earth_orbit_radius * sin(angle)
-    m1 = moon_orbit_radius * cos(angle)
-    m3 = moon_orbit_radius * sin(angle)
-    orbit_line_earth.append((e1, 0, e3))
-    orbit_line_moon.append((m1, 0, m3))
-
-orbit_line_earth.append(orbit_line_earth[0])
-orbit_line_moon.append(orbit_line_moon[0])
-
-earth_lines_mesh = Mesh(vertices=orbit_line_earth, mode="line")
-moon_lines_mesh = Mesh(vertices=orbit_line_moon, mode="line")
-
-earth_orbit = Entity(model=earth_lines_mesh)
-moon_orbit = Entity(model=moon_lines_mesh)
-    
 def update():
+    sun_3d.rotate()
 
-    global orbit_angle_earth, orbit_angle_moon
+    for body in orbiting_bodies:
+        body.rotate()
+        body.orbit()
 
-    sun.rotation_y += 2 * time.dt
-    earth.rotation_y += 50.9 * time.dt
-    moon.rotation_y += 13.2 * time.dt
-    
-    orbit_angle_earth += earth_orbit_speed * time.dt
-    x_earth = earth_orbit_radius * cos(orbit_angle_earth)
-    z_earth = earth_orbit_radius * sin(orbit_angle_earth)
-    earth.position = (x_earth, 0, z_earth)
-    moon_orbit.position = earth.position
-
-    orbit_angle_moon += moon_orbit_speed * time.dt
-    x_moon = x_earth + moon_orbit_radius * cos(orbit_angle_moon)
-    z_moon = z_earth + moon_orbit_radius * sin(orbit_angle_moon)
-    moon.position = (x_moon, 0, z_moon)
 
 EditorCamera()
 app.run()

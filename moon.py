@@ -2,8 +2,8 @@ from celestial_body import CelestialBody
 
 class Moon(CelestialBody):
 
-    def __init__(self, name, radius_km, mass_kg, gravity, orbit=None):
-        super().__init__(name, radius_km, mass_kg, gravity)
+    def __init__(self, name, radius_km, mass_kg, gravity, rotation_period_hours, orbit=None):
+        super().__init__(name, radius_km, mass_kg, gravity, rotation_period_hours)
         self.orbit = orbit
 
     def resume(self):
