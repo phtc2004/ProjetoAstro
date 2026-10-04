@@ -9,11 +9,12 @@ class Planet(CelestialBody):
         mass_kg,
         gravity,
         rotation_period_hours,
+        axial_tilt_degrees,
         avg_temp_celsius,
         atmosphere=None,
         orbit=None
     ):
-        super().__init__(name, radius_km, mass_kg, gravity, rotation_period_hours)
+        super().__init__(name, radius_km, mass_kg, gravity, rotation_period_hours, axial_tilt_degrees)
         self.avg_temp_celsius = avg_temp_celsius
         self.atmosphere = atmosphere
         self.orbit = orbit
